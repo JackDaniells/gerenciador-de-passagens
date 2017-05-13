@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <h:link value="Add" outcome="insert"></h:link>
+         <f:view>
+            <h:form>
+                <h1><h:outputText value="Lista de Clientes"/></h1>
+                <p:dataTable var="cliente" value="#{clienteController.findAll()}">
+                   <p:column headerText="Id">
+                      <h:outputText value="#{cliente.id}" />
+                   </p:column>
+                   <p:column headerText="Nome">
+                      <h:outputText value="#{cliente.nome}" /> 
+                   </p:column>
+                   <p:column headerText="E-mail">
+                      <h:outputText value="#{cliente.email}" />
+                   </p:column>
+                    <p:column>
+                         <f:facet name="header">
+                             <h:outputText value="Endereco"/>
+                         </f:facet>
+                         <h:outputText value="#{cliente.endereco}"/>
+                     </p:column>
+                     <p:column>
+                         <f:facet name="header">
+                             <h:outputText value="Cidade"/>
+                         </f:facet>
+                         <h:outputText value="#{cliente.cidade}"/>
+                     </p:column>
+                     <p:column>
+                         <f:facet name="header">
+                             <h:outputText value="Uf"/>
+                         </f:facet>
+                         <h:outputText value="#{cliente.uf}"/>
+                     </p:column>
+                     <p:column>
+                         <f:facet name="header">
+                             <h:outputText value="Telefone"/>
+                         </f:facet>
+                         <h:outputText value="#{cliente.telefone}"/>
+                     </p:column>
+                    <p:column>
+                         <f:facet name="header">
+                             <h:outputText value="LOGIN"/>
+                         </f:facet>
+                         <h:outputText value="#{cliente.login}"/>
+                     </p:column>
+                    <p:column>
+                         <f:facet name="header">
+                             <h:outputText value="SENHA"/>
+                         </f:facet>
+                         <h:outputText value="#{cliente.senha}"/>
+                     </p:column>
+
+                   <p:column headerText="DELETE">
+                       <h:commandLink value="DEL" action="#{clienteController.delete(cliente)}" onclick="return confirm('Tem certeza?')" />
+                   </p:column>
+                    
+                   <p:column headerText="UPDATE">
+                       <h:commandLink value="UPDATE" action="#{clienteController.update(cliente)}" />
+                   </p:column>
+                </p:dataTable>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+
