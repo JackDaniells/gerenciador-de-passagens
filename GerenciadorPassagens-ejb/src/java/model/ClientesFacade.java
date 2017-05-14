@@ -31,7 +31,8 @@ public class ClientesFacade extends AbstractFacade<Clientes> {
         return em;
     }
     public void autenticar(String login, String senha){
-        Query query = em.createQuery("Clientes.autenticar");
+        System.out.println("AUTENTICAR"+login+" "+senha);
+        Query query = em.createQuery("SELECT c FROM Clientes c WHERE c.senha = :senha AND c.login = :login");
         query.setParameter("senha", senha);
         query.setParameter("login", login);
         List<Clientes> cliente = query.getResultList();

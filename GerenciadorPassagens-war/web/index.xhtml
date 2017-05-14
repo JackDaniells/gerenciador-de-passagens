@@ -12,11 +12,11 @@
             <h1><h:outputText value="Login"/></h1>
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Login:" for="login" />
-                    <p:inputText id="login" value="#{loginController.login}" title="Login" required="true" requiredMessage="The Login field is required." />
+                    <p:inputText id="login" value="#{clienteController.login}" title="Login" required="true" requiredMessage="The Login field is required." />
                      <p:outputLabel value="Senha:" for="senha" />
-                    <p:inputText id="senha" value="#{loginController.senha}" title="Senha" required="true" requiredMessage="The Senha field is required." />
+                    <p:inputText id="senha" value="#{clienteController.senha}" title="Senha" required="true" requiredMessage="The Senha field is required." />
                    
-                    <h:commandButton value="Entrar" action="#{loginController.entrar()}"> </h:commandButton>
+                    <h:commandButton value="Entrar" action="#{clienteController.entrar()}"> </h:commandButton>
                 </p:panelGrid>
             
         </h:form>

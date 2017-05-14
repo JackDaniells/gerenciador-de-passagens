@@ -27,6 +27,23 @@ public class ClienteController implements Serializable {
     private ClientesFacade clienteFacade;
     private Clientes cliente = new Clientes();
 
+    private String login, senha;
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
     public Clientes getCliente() {
         return cliente;
     }
@@ -35,6 +52,7 @@ public class ClienteController implements Serializable {
         this.cliente = cliente;
     }
     public List<Clientes> findAll(){
+        
         return this.clienteFacade.findAll();
     }
     public ClienteController() {
@@ -64,5 +82,13 @@ public class ClienteController implements Serializable {
         this.cliente = new Clientes();
         return "index";
     }
+     public String entrar(){
+       
+        System.out.println("Login: "+getLogin()+" Senha: "+getSenha());
+        clienteFacade.autenticar(getLogin(), getSenha());
+        
+      return "listaCliente";
+    }
+    
     
 }

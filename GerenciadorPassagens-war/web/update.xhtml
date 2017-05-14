@@ -14,6 +14,7 @@
             <h:form>
                 <h1><h:outputText value="Create/Edit"/></h1>
                 <p:panelGrid columns="2">
+                    <p:outputLabel value="Login:" for="login" />
                      <p:inputText id="login" value="#{clienteController.cliente.login}" title="Login" required="true" requiredMessage="The Login field is required." />
                     <p:outputLabel value="Senha:" for="senha" />
                     <p:inputText id="senha" value="#{clienteController.cliente.senha}" title="Senha" required="true" requiredMessage="The Senha field is required." />
@@ -29,7 +30,7 @@
                     <p:inputText id="telefone" value="#{clienteController.cliente.telefone}" title="Telefone" />
                     <p:outputLabel value="Email:" for="email" />
                     <p:inputText id="email" value="#{clienteController.cliente.email}" title="Email" />
-                    <p:outputLabel value="Login:" for="login" />
+                    
                      
                     <h:commandButton value="Editar" action="#{clienteController.update()}" > </h:commandButton>
                 </p:panelGrid>
