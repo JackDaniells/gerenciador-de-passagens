@@ -17,8 +17,11 @@
                     <p:inputText id="senha" value="#{clienteController.senha}" title="Senha" required="true" requiredMessage="The Senha field is required." />
                    
                     <h:commandButton value="Entrar" action="#{clienteController.entrar()}"> </h:commandButton>
+                    <h:link value="Cadastrar novo" outcome="insert"></h:link>
                 </p:panelGrid>
-            
+                <p:panelGrid columns="1">
+                   
+                </p:panelGrid>
         </h:form>
             
         
