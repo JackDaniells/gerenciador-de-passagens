@@ -16,7 +16,7 @@ import javax.persistence.Query;
 
 /**
  *
- * @author Matheus
+ * @author 09123471980
  */
 @Stateless
 public class ClientesFacade extends AbstractFacade<Clientes> {
@@ -43,7 +43,6 @@ public class ClientesFacade extends AbstractFacade<Clientes> {
         }
         
     }
-
     public ClientesFacade() {
         super(Clientes.class);
     }

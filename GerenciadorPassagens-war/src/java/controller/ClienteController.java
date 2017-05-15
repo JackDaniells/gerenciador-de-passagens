@@ -87,7 +87,7 @@ public class ClienteController implements Serializable {
         System.out.println("Login: "+getLogin()+" Senha: "+getSenha());
         clienteFacade.autenticar(getLogin(), getSenha());
         
-      return "listaCliente";
+      return "listaPassagens";
     }
     
     

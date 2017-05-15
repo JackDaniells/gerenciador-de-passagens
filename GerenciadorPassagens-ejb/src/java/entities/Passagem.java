@@ -6,20 +6,24 @@
 package entities;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,43 +35,52 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Passagem.findAll", query = "SELECT p FROM Passagem p"),
     @NamedQuery(name = "Passagem.findById", query = "SELECT p FROM Passagem p WHERE p.id = :id"),
-    @NamedQuery(name = "Passagem.findByHorario", query = "SELECT p FROM Passagem p WHERE p.horario = :horario"),
     @NamedQuery(name = "Passagem.findByValor", query = "SELECT p FROM Passagem p WHERE p.valor = :valor"),
-    @NamedQuery(name = "Passagem.findByIdviagem", query = "SELECT p FROM Passagem p WHERE p.idviagem = :idviagem"),
-    @NamedQuery(name = "Passagem.findByAssento", query = "SELECT p FROM Passagem p WHERE p.assento = :assento")})
+    @NamedQuery(name = "Passagem.findByHorario", query = "SELECT p FROM Passagem p WHERE p.horario = :horario"),
+    @NamedQuery(name = "Passagem.findByAssentosDisponiveis", query = "SELECT p FROM Passagem p WHERE p.assentosDisponiveis = :assentosDisponiveis")})
 public class Passagem implements Serializable {
 
+    @OneToMany(mappedBy = "idPassagem")
+    private List<Reserva> reservaList;
+
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ID")
-    private BigDecimal id;
+    private Integer id;
+    @Column(name = "VALOR")
+    private Integer valor;
     @Column(name = "HORARIO")
     @Temporal(TemporalType.DATE)
     private Date horario;
-    @Column(name = "VALOR")
-    private Double valor;
-    @Column(name = "IDVIAGEM")
-    private Integer idviagem;
-    @Size(max = 3)
-    @Column(name = "ASSENTO")
-    private String assento;
+    @Column(name = "ASSENTOS_DISPONIVEIS")
+    private Integer assentosDisponiveis;
+    @JoinColumn(name = "ID_VIAGEM", referencedColumnName = "ID")
+    @ManyToOne
+    private Viagem idViagem;
 
     public Passagem() {
     }
 
-    public Passagem(BigDecimal id) {
+    public Passagem(Integer id) {
         this.id = id;
     }
 
-    public BigDecimal getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getValor() {
+        return valor;
+    }
+
+    public void setValor(Integer valor) {
+        this.valor = valor;
     }
 
     public Date getHorario() {
@@ -78,28 +91,20 @@ public class Passagem implements Serializable {
         this.horario = horario;
     }
 
-    public Double getValor() {
-        return valor;
+    public Integer getAssentosDisponiveis() {
+        return assentosDisponiveis;
     }
 
-    public void setValor(Double valor) {
-        this.valor = valor;
+    public void setAssentosDisponiveis(Integer assentosDisponiveis) {
+        this.assentosDisponiveis = assentosDisponiveis;
     }
 
-    public Integer getIdviagem() {
-        return idviagem;
+    public Viagem getIdViagem() {
+        return idViagem;
     }
 
-    public void setIdviagem(Integer idviagem) {
-        this.idviagem = idviagem;
-    }
-
-    public String getAssento() {
-        return assento;
-    }
-
-    public void setAssento(String assento) {
-        this.assento = assento;
+    public void setIdViagem(Viagem idViagem) {
+        this.idViagem = idViagem;
     }
 
     @Override
@@ -125,6 +130,15 @@ public class Passagem implements Serializable {
     @Override
     public String toString() {
         return "entities.Passagem[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public List<Reserva> getReservaList() {
+        return reservaList;
+    }
+
+    public void setReservaList(List<Reserva> reservaList) {
+        this.reservaList = reservaList;
     }
     
 }

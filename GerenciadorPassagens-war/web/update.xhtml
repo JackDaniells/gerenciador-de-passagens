@@ -12,26 +12,19 @@
 
 
             <h:form>
-                <h1><h:outputText value="Create/Edit"/></h1>
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="Login:" for="login" />
-                     <p:inputText id="login" value="#{clienteController.cliente.login}" title="Login" required="true" requiredMessage="The Login field is required." />
-                    <p:outputLabel value="Senha:" for="senha" />
-                    <p:inputText id="senha" value="#{clienteController.cliente.senha}" title="Senha" required="true" requiredMessage="The Senha field is required." />
-                    <p:outputLabel value="Nome:" for="nome" />
-                    <p:inputText id="nome" value="#{clienteController.cliente.nome}" title="Nome" required="true" requiredMessage="The Nome field is required."/>
-                    <p:outputLabel value="Endereco:" for="endereco" />
-                    <p:inputText id="endereco" value="#{clienteController.cliente.endereco}" title="Endereco" />
-                    <p:outputLabel value="Cidade:" for="cidade" />
-                    <p:inputText id="cidade" value="#{clienteController.cliente.cidade}" title="Cidade" />
-                    <p:outputLabel value="Uf:" for="uf" />
-                    <p:inputText id="uf" value="#{clienteController.cliente.uf}" title="Uf" />
-                    <p:outputLabel value="Telefone:" for="telefone" />
-                    <p:inputText id="telefone" value="#{clienteController.cliente.telefone}" title="Telefone" />
-                    <p:outputLabel value="Email:" for="email" />
-                    <p:inputText id="email" value="#{clienteController.cliente.email}" title="Email" />
+                    <h1><h:outputText value="Create/Edit"/></h1>
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Id:" for="id" />
+                        <p:inputText id="id" value="#{clienteController.cliente.id}" title="Id" required="true" requiredMessage="The Id field is required."/>
+                        <p:outputLabel value="Nome:" for="nome" />
+                        <p:inputText id="nome" value="#{clienteController.cliente.nome}" title="Nome" required="true" requiredMessage="The Nome field is required."/>
+                        <p:outputLabel value="Email:" for="email" />
+                        <p:inputText id="email" value="#{clienteController.cliente.email}" title="Email" />
+                        <p:outputLabel value="Login:" for="login" />
+                        <p:inputText id="login" value="#{clienteController.cliente.login}" title="Login" />
+                        <p:outputLabel value="Senha:" for="senha" />
+                        <p:inputText id="senha" value="#{clienteController.cliente.senha}" title="Senha" />
                     
-                     
                     <h:commandButton value="Editar" action="#{clienteController.update()}" > </h:commandButton>
                 </p:panelGrid>
             </h:form>

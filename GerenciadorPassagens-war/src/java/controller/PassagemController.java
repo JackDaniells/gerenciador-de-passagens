@@ -5,8 +5,12 @@
  */
 package controller;
 
+import entities.Passagem;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.ApplicationScoped;
+import model.PassagemFacade;
 
 /**
  *
@@ -16,10 +20,24 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class PassagemController {
 
-    /**
-     * Creates a new instance of PassagemController
-     */
+    @EJB
+    private PassagemFacade passagemFacade;
+    private Passagem passagem = new Passagem();
+
+    
+    
     public PassagemController() {
     }
     
+    public List<Passagem> findAll(){
+        return this.passagemFacade.findAll();
+    }
+    
+    public Passagem getPassagem() {
+        return passagem;
+    }
+
+    public void setPassagem(Passagem passagem) {
+        this.passagem = passagem;
+    }
 }
