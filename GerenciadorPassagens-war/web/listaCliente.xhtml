@@ -12,45 +12,32 @@
         <h:link value="Add" outcome="insert"></h:link>
          <f:view>
             <h:form>
-                    <h1><h:outputText value="List"/></h1>
-                    <h:dataTable value="#{clienteController.findAll()}" var="item">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Id"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Nome"/>
-                            </f:facet>
-                            <h:outputText value="#{item.nome}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Email"/>
-                            </f:facet>
-                            <h:outputText value="#{item.email}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Login"/>
-                            </f:facet>
-                            <h:outputText value="#{item.login}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Senha"/>
-                            </f:facet>
-                            <h:outputText value="#{item.senha}"/>
-                        </h:column>
-                    </h:dataTable>
+                    <h1><h:outputText value="Lista de Clientes"/></h1>
+                <p:dataTable value="#{clienteController.findAll()}" var="item">
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nome"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nome}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Email"/>
+                        </f:facet>
+                        <h:outputText value="#{item.email}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Login"/>
+                        </f:facet>
+                        <h:outputText value="#{item.login}"/>
+                    </p:column>
                    <p:column headerText="DELETE">
-                       <h:commandLink value="DEL" action="#{clienteController.delete(cliente)}" onclick="return confirm('Tem certeza?')" />
+                       <h:commandLink value="DEL" action="#{clienteController.delete(item)}" onclick="return confirm('Tem certeza?')" />
                    </p:column>
                     
                    <p:column headerText="UPDATE">
-                       <h:commandLink value="UPDATE" action="#{clienteController.update(cliente)}" />
+                       <h:commandLink value="UPDATE" action="#{clienteController.update(item)}" />
                    </p:column>
                 </p:dataTable>
             </h:form>
