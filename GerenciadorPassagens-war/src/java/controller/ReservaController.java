@@ -5,6 +5,8 @@
  */
 package controller;
 
+import entities.Clientes;
+import entities.Passagem;
 import entities.Reserva;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -34,11 +36,10 @@ public class ReservaController implements Serializable {
         return this.reservaFacade.findAll();
     }
     
-    public void insert(int idCliente, int idPassagem){
-        
-    }
-    
-    public String insert(){
+    public String reservar(Passagem passagem, Clientes cliente){
+        this.reserva = new Reserva();
+        reserva.setIdPassagem(passagem);
+        reserva.setIdCliente(cliente);
         try{
             this.reservaFacade.create(reserva);
         }catch(Exception e){

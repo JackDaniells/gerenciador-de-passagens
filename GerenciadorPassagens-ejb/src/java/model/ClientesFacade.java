@@ -18,7 +18,7 @@ import javax.persistence.Query;
  *
  * @author 09123471980
  */
-@Stateless
+@Stateless(mappedName="ClienteAtual")
 public class ClientesFacade extends AbstractFacade<Clientes> {
 
     @PersistenceContext(unitName = "GerenciadorPassagens-ejbPU")

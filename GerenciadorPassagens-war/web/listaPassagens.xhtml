@@ -43,7 +43,7 @@
                     </p:column>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Idviagem"/>
+                            <h:outputText value="Origem / Destino"/>
                         </f:facet>
                         <h:outputText value="#{item.idViagem}"/>
                     </p:column>
@@ -53,7 +53,11 @@
                         </f:facet>
                         <h:outputText value="#{item.assentosDisponiveis}"/>
                     </p:column>
+                    <p:column headerText="Reservar">
+                       <h:commandLink value="Reservar" action="#{reservaController.reservar(item)}" />
+                   </p:column>
                 </p:dataTable>
+                
             </h:form>
         </f:view>
     </h:body>

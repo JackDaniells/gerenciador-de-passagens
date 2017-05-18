@@ -25,7 +25,7 @@ public class ClienteController implements Serializable {
    
     @EJB
     private ClientesFacade clienteFacade;
-    private Clientes cliente = new Clientes();
+    private static Clientes cliente = new Clientes();
 
     private String login, senha;
 
