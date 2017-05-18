@@ -10,3 +10,12 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/nbproject/private/
+/dist/
+/build/
+/GerenciadorPassagens-war/nbproject/private/
+/GerenciadorPassagens-war/build/
+/GerenciadorPassagens-ejb/nbproject/private/
+/GerenciadorPassagens-ejb/build/
+/GerenciadorPassagens-ejb/dist/
+/GerenciadorPassagens-war/dist/

@@ -65,7 +65,7 @@ public class ClienteController implements Serializable {
             System.err.println(e);
         }
         this.cliente = new Clientes();
-        return "index";
+        return "listaCliente";
     }
     
     public void delete(Clientes cliente){
@@ -80,7 +80,7 @@ public class ClienteController implements Serializable {
     public String update(){
         this.clienteFacade.edit(cliente);
         this.cliente = new Clientes();
-        return "index";
+        return "listaCliente";
     }
      public String entrar(){
        

@@ -112,7 +112,7 @@ public class Viagem implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Viagem[ id=" + id + " ]";
+        return getOrigem()+" / "+getDestino();
     }
     
 }
