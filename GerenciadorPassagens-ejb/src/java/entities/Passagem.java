@@ -52,7 +52,7 @@ public class Passagem implements Serializable {
     @Column(name = "VALOR")
     private Integer valor;
     @Column(name = "HORARIO")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date horario;
     @Column(name = "ASSENTOS_DISPONIVEIS")
     private Integer assentosDisponiveis;

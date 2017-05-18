@@ -31,8 +31,8 @@
                         <f:facet name="header">
                             <h:outputText value="Horario"/>
                         </f:facet>
-                        <h:outputText value="#{item.horario}">
-                            <f:convertDateTime pattern="HH:mm" />
+                        <h:outputText value="#{item.horario}" >
+                            <f:convertDateTime pattern="HH:mm" timeZone="GMT-03:00"/>
                         </h:outputText>
                     </p:column>
                     <p:column>
