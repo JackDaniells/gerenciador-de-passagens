@@ -26,7 +26,6 @@ public class ReservaController implements Serializable {
 
     @EJB
     private ReservaFacade reservaFacade;
-    private final PassagemFacade passagemFacade = new PassagemFacade();
    
     public ReservaController() {
     }
@@ -45,7 +44,6 @@ public class ReservaController implements Serializable {
         Session.getInstance();
         reserva.setIdCliente(Session.getUsuario());
         try{
-            this.passagemFacade.decrementaAssento(passagem);
             this.reservaFacade.create(reserva);
             return "listaReservas";
         }catch(Exception e){
@@ -55,7 +53,6 @@ public class ReservaController implements Serializable {
     }
     
     public void cancelarReserva(Reserva reserva){
-        this.passagemFacade.incrementaAssento(reserva.getIdPassagem());
         this.reservaFacade.remove(reserva);
     }
 }

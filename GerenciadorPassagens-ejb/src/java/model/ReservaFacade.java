@@ -8,6 +8,7 @@ package model;
 import entities.Clientes;
 import entities.Reserva;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +20,9 @@ import javax.persistence.Query;
  */
 @Stateless
 public class ReservaFacade extends AbstractFacade<Reserva> {
+
+    @EJB
+    private PassagemFacade passagemFacade;
 
     @PersistenceContext(unitName = "GerenciadorPassagens-ejbPU")
     private EntityManager em;
@@ -36,6 +40,18 @@ public class ReservaFacade extends AbstractFacade<Reserva> {
 
     public ReservaFacade() {
         super(Reserva.class);
+    }
+    
+    @Override
+    public void create(Reserva reserva){
+        passagemFacade.decrementaAssento(reserva.getIdPassagem());
+        super.create(reserva);
+    }
+    
+    @Override
+    public void remove(Reserva reserva){
+        passagemFacade.incrementaAssento(reserva.getIdPassagem());
+        super.remove(reserva);
     }
     
 }

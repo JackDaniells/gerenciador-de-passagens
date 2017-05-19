@@ -20,7 +20,7 @@ public class PassagemFacade extends AbstractFacade<Passagem> {
     private EntityManager em;
 
     @Override
-    protected EntityManager getEntityManager() {
+    public EntityManager getEntityManager() {
         return em;
     }
     
@@ -34,13 +34,13 @@ public class PassagemFacade extends AbstractFacade<Passagem> {
     public void incrementaAssento(Passagem p){
         int assentos = p.getAssentosDisponiveis() + 1;
         p.setAssentosDisponiveis(assentos);
-        em.merge(p);
+        this.getEntityManager().merge(p);
     }
 
     public void decrementaAssento(Passagem p){
-        int assentos = p.getAssentosDisponiveis() + 1;
+        int assentos = p.getAssentosDisponiveis() - 1;
         p.setAssentosDisponiveis(assentos);
-        em.merge(p);
+        this.getEntityManager().merge(p);
     }
      
     public PassagemFacade() {
