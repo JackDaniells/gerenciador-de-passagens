@@ -38,11 +38,11 @@ public class PassagemController {
         return this.passagemFacade.listaDisponiveis(new Timestamp(System.currentTimeMillis()));
     }
     
-    public Passagem getPassagem() {
-        return passagem;
+    public void incrementaAssento(Passagem passagem){
+        this.passagemFacade.incrementaAssento(passagem);
     }
-
-    public void setPassagem(Passagem passagem) {
-        this.passagem = passagem;
+    
+    public void decrementaAssento(Passagem passagem){
+        this.passagemFacade.decrementaAssento(passagem);
     }
 }

@@ -13,6 +13,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import model.PassagemFacade;
 import model.ReservaFacade;
 
 /**
@@ -25,10 +26,8 @@ public class ReservaController implements Serializable {
 
     @EJB
     private ReservaFacade reservaFacade;
-    private Reserva reserva = new Reserva();
-
+    private final PassagemFacade passagemFacade = new PassagemFacade();
    
-    
     public ReservaController() {
     }
     
@@ -36,30 +35,27 @@ public class ReservaController implements Serializable {
         return this.reservaFacade.findAll();
     }
     
-    public List<Reserva> listaPorClienteAtivo(int idCliente){
-        return this.reservaFacade.listaPorClienteAtivo(idCliente);
+    public List<Reserva> listaPorClienteAtivo(){
+        return this.reservaFacade.listaPorClienteAtivo(Session.getUsuario());
     }
     
-    public String reservar(Passagem passagem, Clientes cliente){
-        this.reserva = new Reserva();
+    public String reservar(Passagem passagem){
+        Reserva reserva = new Reserva();
         reserva.setIdPassagem(passagem);
-        reserva.setIdCliente(cliente);
+        Session.getInstance();
+        reserva.setIdCliente(Session.getUsuario());
         try{
+            this.passagemFacade.decrementaAssento(passagem);
             this.reservaFacade.create(reserva);
+            return "listaReservas";
         }catch(Exception e){
             System.err.println(e);
+            return "listaPassagem";
         }
-        this.reserva = new Reserva();
-        return "listaPassagens";
     }
     
-     public Reserva getReserva() {
-        return reserva;
+    public void cancelarReserva(Reserva reserva){
+        this.passagemFacade.incrementaAssento(reserva.getIdPassagem());
+        this.reservaFacade.remove(reserva);
     }
-
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
-    }
-    
-    
 }

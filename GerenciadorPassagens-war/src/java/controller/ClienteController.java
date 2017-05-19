@@ -23,13 +23,15 @@ import model.ClientesFacade;
 
 public class ClienteController implements Serializable {
    
-    @EJB
+    @EJB 
     private ClientesFacade clienteFacade;
-    private static Clientes cliente = new Clientes();
-
+    private Clientes cliente = new Clientes();
+    
     private String login, senha;
 
+    
     public String getLogin() {
+        
         return login;
     }
 
@@ -45,11 +47,13 @@ public class ClienteController implements Serializable {
         this.senha = senha;
     }
     public Clientes getCliente() {
-        return cliente;
+        Session.getInstance();
+        return Session.getUsuario();
     }
 
     public void setCliente(Clientes cliente) {
-        this.cliente = cliente;
+        Session.getInstance();
+        Session.setUsuario(cliente);
     }
     public List<Clientes> findAll(){
         
@@ -60,18 +64,17 @@ public class ClienteController implements Serializable {
     
     public String insert(){
         try{
-            this.clienteFacade.create(cliente);
+            this.clienteFacade.create(this.cliente);
         }catch(Exception e){
             System.err.println(e);
         }
-        this.cliente = new Clientes();
-        return "listaCliente";
+        return "index";
     }
     
     public void delete(Clientes cliente){
         this.clienteFacade.remove(cliente);
     }
-    
+           
     public String update(Clientes cliente){
         this.cliente = cliente;
         return "update";
@@ -79,14 +82,14 @@ public class ClienteController implements Serializable {
     
     public String update(){
         this.clienteFacade.edit(cliente);
-        this.cliente = new Clientes();
         return "listaCliente";
-    }
-     public String entrar(){
+    }     
+    
+    public String entrar(){
        
-        System.out.println("Login: "+getLogin()+" Senha: "+getSenha());
-        this.cliente = clienteFacade.autenticar(getLogin(), getSenha());
-        
+        Clientes cliente = clienteFacade.autenticar(getLogin(), getSenha());
+        Session.getInstance();
+        Session.setUsuario(cliente);
       return "listaPassagens";
     }
     

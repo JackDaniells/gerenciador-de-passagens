@@ -5,6 +5,7 @@
  */
 package model;
 
+import entities.Clientes;
 import entities.Reserva;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -27,9 +28,9 @@ public class ReservaFacade extends AbstractFacade<Reserva> {
         return em;
     }
     
-    public List<Reserva> listaPorClienteAtivo(int idCliente){
+    public List<Reserva> listaPorClienteAtivo(Clientes cliente){
         Query query = em.createQuery("SELECT r FROM Reserva r WHERE r.idCliente = :idCliente");
-        query.setParameter("idCliente", idCliente);
+        query.setParameter("idCliente", cliente);
         return query.getResultList();
     }
 

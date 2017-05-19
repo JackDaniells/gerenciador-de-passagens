@@ -13,7 +13,7 @@
             <h:form>
                 <h:link value="Listar Passagens" outcome="listaPassagens"></h:link>
                 <h1><h:outputText value="Lista de Reservas"/></h1>
-                <p:dataTable value="#{reservaController.listaPorClienteAtivo(clienteController.cliente.id)}" var="reserva">
+                <p:dataTable value="#{reservaController.listaPorClienteAtivo()}" var="reserva">
                      <p:column>
                         <f:facet name="header">
                             <h:outputText value="Origem / Destino"/>
@@ -36,6 +36,9 @@
                             <f:convertDateTime pattern="HH:mm" timeZone="GMT-03:00"/>
                         </h:outputText>
                     </p:column>
+                    <p:column headerText="Cancelar reserva">
+                        <h:commandLink value="Cancelar" action="#{reservaController.cancelarReserva(reserva)}" />
+                   </p:column>
                 </p:dataTable>
                 
             </h:form>

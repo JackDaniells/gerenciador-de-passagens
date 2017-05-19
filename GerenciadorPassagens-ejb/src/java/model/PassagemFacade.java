@@ -30,7 +30,19 @@ public class PassagemFacade extends AbstractFacade<Passagem> {
         query.setParameter("horario", agora);
         return query.getResultList();
     }
+    
+    public void incrementaAssento(Passagem p){
+        int assentos = p.getAssentosDisponiveis() + 1;
+        p.setAssentosDisponiveis(assentos);
+        em.merge(p);
+    }
 
+    public void decrementaAssento(Passagem p){
+        int assentos = p.getAssentosDisponiveis() + 1;
+        p.setAssentosDisponiveis(assentos);
+        em.merge(p);
+    }
+     
     public PassagemFacade() {
         super(Passagem.class);
     }
