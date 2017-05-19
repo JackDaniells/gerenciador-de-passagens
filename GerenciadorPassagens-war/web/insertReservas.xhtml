@@ -10,6 +10,8 @@
     <h:body>
         <f:view>
             <h:form>
+                <h:link value="Listar Passagens" outcome="listaPassagens"></h:link>
+                 <h1><h:outputText value="Lista de Reservas"/></h1>
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Id:" for="id" />
                     <p:inputText id="id" value="#{reservaController.reserva.id}" title="Id" required="true" requiredMessage="The Id field is required."/>

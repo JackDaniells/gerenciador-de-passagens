@@ -36,6 +36,10 @@ public class ReservaController implements Serializable {
         return this.reservaFacade.findAll();
     }
     
+    public List<Reserva> listaPorClienteAtivo(int idCliente){
+        return this.reservaFacade.listaPorClienteAtivo(idCliente);
+    }
+    
     public String reservar(Passagem passagem, Clientes cliente){
         this.reserva = new Reserva();
         reserva.setIdPassagem(passagem);

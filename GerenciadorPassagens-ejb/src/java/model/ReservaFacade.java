@@ -6,9 +6,11 @@
 package model;
 
 import entities.Reserva;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -23,6 +25,12 @@ public class ReservaFacade extends AbstractFacade<Reserva> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+    public List<Reserva> listaPorClienteAtivo(int idCliente){
+        Query query = em.createQuery("SELECT r FROM Reserva r WHERE r.idCliente = :idCliente");
+        query.setParameter("idCliente", idCliente);
+        return query.getResultList();
     }
 
     public ReservaFacade() {

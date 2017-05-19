@@ -6,14 +6,13 @@
 package model;
 
 import entities.Passagem;
+import java.sql.Timestamp;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
-/**
- *
- * @author 09123471980
- */
 @Stateless
 public class PassagemFacade extends AbstractFacade<Passagem> {
 
@@ -23,6 +22,13 @@ public class PassagemFacade extends AbstractFacade<Passagem> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
+    }
+    
+
+    public List<Passagem> listaDisponiveis(Timestamp agora){
+        Query query = em.createQuery("SELECT p FROM Passagem p WHERE p.assentosDisponiveis > 0 AND p.horario > :horario ORDER BY p.horario");
+        query.setParameter("horario", agora);
+        return query.getResultList();
     }
 
     public PassagemFacade() {

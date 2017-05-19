@@ -28,7 +28,7 @@ public class ClientesFacade extends AbstractFacade<Clientes> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    public void autenticar(String login, String senha){
+    public Clientes autenticar(String login, String senha){
         System.out.println("AUTENTICAR"+login+" "+senha);
         Query query = em.createQuery("SELECT c FROM Clientes c WHERE c.senha = :senha AND c.login = :login");
         query.setParameter("senha", senha);
@@ -40,9 +40,11 @@ public class ClientesFacade extends AbstractFacade<Clientes> {
             } catch (IOException ex) {
                 System.err.println("ERRO REDIRECIONAMENTO "+ex);
             }
+            return null;
         }
-        
+        return cliente.get(0);  
     }
+    
     public ClientesFacade() {
         super(Clientes.class);
     }

@@ -11,20 +11,20 @@
        
         <f:view>
             <h:form>
-                <h:link value="Listar Reservas" outcome="listaReservas"></h:link>
-                <h1><h:outputText value="Lista de Passagens"/></h1>
-                <p:dataTable value="#{passagemController.listaDisponiveis()}" var="passagem">
+                <h:link value="Listar Passagens" outcome="listaPassagens"></h:link>
+                <h1><h:outputText value="Lista de Reservas"/></h1>
+                <p:dataTable value="#{reservaController.listaPorClienteAtivo(clienteController.cliente.id)}" var="reserva">
                      <p:column>
                         <f:facet name="header">
                             <h:outputText value="Origem / Destino"/>
                         </f:facet>
-                        <h:outputText value="#{passagem.idViagem}"/>
+                         <h:outputText value="#{reserva.idPassagem.idViagem}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="Dia"/>
                         </f:facet>
-                        <h:outputText value="#{passagem.horario}">
+                        <h:outputText value="#{reserva.idPassagem.horario}">
                             <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
                     </p:column>
@@ -32,25 +32,10 @@
                         <f:facet name="header">
                             <h:outputText value="Horario"/>
                         </f:facet>
-                        <h:outputText value="#{passagem.horario}" >
+                        <h:outputText value="#{reserva.idPassagem.horario}" >
                             <f:convertDateTime pattern="HH:mm" timeZone="GMT-03:00"/>
                         </h:outputText>
                     </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Valor"/>
-                        </f:facet>
-                        <h:outputText value="#{passagem.valor}"/>
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Assentos Disp."/>
-                        </f:facet>
-                        <h:outputText value="#{passagem.assentosDisponiveis}"/>
-                    </p:column>
-                    <p:column headerText="Reservar">
-                        <h:commandLink value="Reservar" action="#{reservaController.reservar(passagem, clienteController.cliente)}" />
-                   </p:column>
                 </p:dataTable>
                 
             </h:form>

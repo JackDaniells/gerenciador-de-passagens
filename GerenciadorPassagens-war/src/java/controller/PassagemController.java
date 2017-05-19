@@ -6,6 +6,7 @@
 package controller;
 
 import entities.Passagem;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -31,6 +32,10 @@ public class PassagemController {
     
     public List<Passagem> findAll(){
         return this.passagemFacade.findAll();
+    }
+    
+    public List<Passagem> listaDisponiveis(){
+        return this.passagemFacade.listaDisponiveis(new Timestamp(System.currentTimeMillis()));
     }
     
     public Passagem getPassagem() {

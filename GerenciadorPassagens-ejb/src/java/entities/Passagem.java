@@ -37,7 +37,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Passagem.findById", query = "SELECT p FROM Passagem p WHERE p.id = :id"),
     @NamedQuery(name = "Passagem.findByValor", query = "SELECT p FROM Passagem p WHERE p.valor = :valor"),
     @NamedQuery(name = "Passagem.findByHorario", query = "SELECT p FROM Passagem p WHERE p.horario = :horario"),
-    @NamedQuery(name = "Passagem.findByAssentosDisponiveis", query = "SELECT p FROM Passagem p WHERE p.assentosDisponiveis = :assentosDisponiveis")})
+    @NamedQuery(name = "Passagem.findByAssentosDisponiveis", query = "SELECT p FROM Passagem p WHERE p.assentosDisponiveis = :assentosDisponiveis"),
+    @NamedQuery(name = "Passagem.listaDisponiveis", query = "SELECT p FROM Passagem p WHERE p.assentosDisponiveis > 0 AND p.horario > :horario")
+})
+
+
 public class Passagem implements Serializable {
 
     @OneToMany(mappedBy = "idPassagem")

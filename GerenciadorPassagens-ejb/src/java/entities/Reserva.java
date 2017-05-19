@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Reserva.findAll", query = "SELECT r FROM Reserva r"),
+    @NamedQuery(name = "Reserva.listaPorClienteAtivo", query = "SELECT r FROM Reserva r WHERE r.idCliente = :idCliente"),
     @NamedQuery(name = "Reserva.findById", query = "SELECT r FROM Reserva r WHERE r.id = :id")})
 public class Reserva implements Serializable {
 

@@ -20,8 +20,8 @@ import model.ClientesFacade;
  */
 @Named(value = "clienteController")
 @SessionScoped
-public class ClienteController implements Serializable {
 
+public class ClienteController implements Serializable {
    
     @EJB
     private ClientesFacade clienteFacade;
@@ -85,7 +85,7 @@ public class ClienteController implements Serializable {
      public String entrar(){
        
         System.out.println("Login: "+getLogin()+" Senha: "+getSenha());
-        clienteFacade.autenticar(getLogin(), getSenha());
+        this.cliente = clienteFacade.autenticar(getLogin(), getSenha());
         
       return "listaPassagens";
     }
