@@ -93,5 +93,12 @@ public class ClienteController implements Serializable {
       return "listaPassagens";
     }
     
+    public String sair(){
+       cliente = new Clientes();
+       Session.getInstance();
+       Session.setUsuario(cliente);
+       return "index";
+    }
+    
     
 }

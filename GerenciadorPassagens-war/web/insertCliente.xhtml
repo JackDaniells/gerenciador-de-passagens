@@ -9,24 +9,25 @@
     </h:head>
     <h:body>
         <f:view>
-            <h:form>
-                    <h1><h:outputText value="Cadastrar"/></h1>
-                    <p:panelGrid columns="2">
-                        <p:outputLabel value="Nome:" for="nome" />
-                        <p:inputText id="nome" value="#{clienteController.cliente.nome}" title="Nome" required="true" requiredMessage="The Nome field is required."/>
-                        <p:outputLabel value="Email:" for="email" />
-                        <p:inputText id="email" value="#{clienteController.cliente.email}" title="Email" />
-                        <p:outputLabel value="Login:" for="login" />
-                        <p:inputText id="login" value="#{clienteController.cliente.login}" title="Login" />
-                        <p:outputLabel value="Senha:" for="senha" />
-                        <p:inputText id="senha" value="#{clienteController.cliente.senha}" title="Senha" />
-                    </p:panelGrid>
-                    
-                    <h:commandButton value="Inserir" action="#{clienteController.insert()}"> </h:commandButton>
-                    <h:link value="Voltar" outcome="index"></h:link>
+            <div align="center">
+                <h:form>
+                        <h1><h:outputText value="Cadastrar"/></h1>
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Nome:" for="nome" />
+                            <h:inputText id="nome" value="#{clienteController.cliente.nome}" title="Nome" required="true" requiredMessage="The Nome field is required."/>
+                            <p:outputLabel value="Email:" for="email" />
+                            <h:inputText id="email" value="#{clienteController.cliente.email}" title="Email" />
+                            <p:outputLabel value="Login:" for="login" />
+                            <h:inputText id="login" value="#{clienteController.cliente.login}" title="Login" />
+                            <p:outputLabel value="Senha:" for="senha" />
+                            <h:inputSecret id="senha" value="#{clienteController.cliente.senha}" title="Senha" />
+                            <h:commandButton value="Inserir" action="#{clienteController.insert()}"> </h:commandButton>
+                            <h:link value="Voltar" outcome="index"></h:link>
+                        </p:panelGrid>
 
-                    
-            </h:form>
+                        
+                </h:form>
+            </div>
         </f:view>
 
     </h:body>

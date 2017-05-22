@@ -5,29 +5,36 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Editar Cliente</title>
+        <title>Editar Conta</title>
     </h:head>
     <h:body>
         <f:view>
-
-
-            <h:form>
-                    <h1><h:outputText value="Editar Cliente"/></h1>
-                    <p:panelGrid columns="2">
-                        <p:outputLabel value="Id:" for="id" />
-                        <p:inputText id="id" value="#{clienteController.cliente.id}" title="Id" required="true" requiredMessage="The Id field is required."/>
-                        <p:outputLabel value="Nome:" for="nome" />
-                        <p:inputText id="nome" value="#{clienteController.cliente.nome}" title="Nome" required="true" requiredMessage="The Nome field is required."/>
-                        <p:outputLabel value="Email:" for="email" />
-                        <p:inputText id="email" value="#{clienteController.cliente.email}" title="Email" />
-                        <p:outputLabel value="Login:" for="login" />
-                        <p:inputText id="login" value="#{clienteController.cliente.login}" title="Login" />
-                        <p:outputLabel value="Senha:" for="senha" />
-                        <p:inputText id="senha" value="#{clienteController.cliente.senha}" title="Senha" />
-                    
-                    <h:commandButton value="Editar" action="#{clienteController.update()}" > </h:commandButton>
-                </p:panelGrid>
+            <h:form style="width:100%;">
+                <p:menubar>
+                        <p:menuitem value="Listar Passagens" outcome="listaPassagens"></p:menuitem>
+                        <p:menuitem value="Listar Reservas" outcome="listaReservas"></p:menuitem>
+                        <p:menuitem value="Editar Conta" outcome="updateCliente"></p:menuitem>
+                        <p:menuitem style="position: absolute; right: 6px;" value="Sair" action="#{clienteController.sair()}" ></p:menuitem>
+                </p:menubar>
             </h:form>
+
+            <div align="center" >
+                <h:form>
+                        <h1><h:outputText value="Editar Conta"/></h1>
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="Nome:" for="nome" />
+                            <h:inputText id="nome" value="#{clienteController.cliente.nome}" title="Nome" required="true" requiredMessage="The Nome field is required."/>
+                            <p:outputLabel value="Email:" for="email" />
+                            <h:inputText id="email" value="#{clienteController.cliente.email}" title="Email" />
+                            <p:outputLabel value="Login:" for="login" />
+                            <h:inputText id="login" value="#{clienteController.cliente.login}" title="Login" />
+                            <p:outputLabel value="Senha:" for="senha" />
+                            <h:inputSecret id="senha" value="#{clienteController.cliente.senha}" title="Senha" />
+                            <h:commandButton value="Editar" action="#{clienteController.update()}" > </h:commandButton>
+                            <h:link value="Voltar" outcome="listaPassagens"></h:link>
+                    </p:panelGrid>
+                </h:form>
+            </div>
             
         </f:view>
 
