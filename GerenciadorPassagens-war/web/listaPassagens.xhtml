@@ -17,9 +17,9 @@
                         <p:menuitem style="position: absolute; right: 6px;" value="Sair" action="#{clienteController.sair()}"></p:menuitem>
                 </p:menubar>
             </h:form>
-            <h:form>
+            <h:form >
                 <h1 align="center"><h:outputText value="Lista de Passagens"/></h1>
-                <p:dataTable value="#{passagemController.listaDisponiveis()}" var="passagem">
+                <p:dataTable value="#{passagemController.listaDisponiveis()}" var="passagem" style=" text-align:center;">
                      <p:column>
                         <f:facet name="header">
                             <h:outputText value="Origem / Destino"/>
@@ -46,7 +46,7 @@
                         <f:facet name="header">
                             <h:outputText value="Valor"/>
                         </f:facet>
-                        <h:outputText value="#{passagem.valor}"/>
+                        <h:outputText value="R$ #{passagem.valor},00"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">

@@ -18,9 +18,9 @@
                             <p:outputLabel value="Email:" for="email" />
                             <h:inputText id="email" value="#{clienteController.cliente.email}" title="Email" />
                             <p:outputLabel value="Login:" for="login" />
-                            <h:inputText id="login" value="#{clienteController.cliente.login}" title="Login" />
+                            <h:inputText id="login" value="#{clienteController.cliente.login}" title="Login" required="true" />
                             <p:outputLabel value="Senha:" for="senha" />
-                            <h:inputSecret id="senha" value="#{clienteController.cliente.senha}" title="Senha" />
+                            <h:inputSecret id="senha" value="#{clienteController.cliente.senha}" title="Senha" required="true" />
                             <h:commandButton value="Inserir" action="#{clienteController.insert()}"> </h:commandButton>
                             <h:link value="Voltar" outcome="index"></h:link>
                         </p:panelGrid>

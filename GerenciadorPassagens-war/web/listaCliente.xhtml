@@ -11,7 +11,7 @@
         <h:link value="Adicionar Cliente" outcome="insertCliente"></h:link>
          <f:view>
             <h:form>
-                    <h1><h:outputText value="Lista de Clientes"/></h1>
+                <h1><h:outputText value="Lista de Clientes"/></h1>
                 <p:dataTable value="#{clienteController.findAll()}" var="item">
                     <p:column>
                         <f:facet name="header">

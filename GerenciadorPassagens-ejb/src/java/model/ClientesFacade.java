@@ -35,11 +35,6 @@ public class ClientesFacade extends AbstractFacade<Clientes> {
         query.setParameter("login", login);
         List<Clientes> cliente = query.getResultList();
         if(cliente.isEmpty()){
-            try {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("erro");
-            } catch (IOException ex) {
-                System.err.println("ERRO REDIRECIONAMENTO "+ex);
-            }
             return null;
         }
         return cliente.get(0);  
@@ -47,6 +42,16 @@ public class ClientesFacade extends AbstractFacade<Clientes> {
     
     public ClientesFacade() {
         super(Clientes.class);
+    }
+    
+    public Clientes editar(Clientes cliente){
+        Clientes cli = find(cliente.getId());
+        if(!cli.getSenha().equals(cliente.getSenha()) ){
+            return null;
+        }else{
+            super.edit(cliente);
+            return cliente;
+        }
     }
     
 }

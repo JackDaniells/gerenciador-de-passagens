@@ -7,6 +7,7 @@ package model;
 
 import entities.Clientes;
 import entities.Reserva;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -33,8 +34,9 @@ public class ReservaFacade extends AbstractFacade<Reserva> {
     }
     
     public List<Reserva> listaPorClienteAtivo(Clientes cliente){
-        Query query = em.createQuery("SELECT r FROM Reserva r WHERE r.idCliente = :idCliente");
+        Query query = em.createQuery("SELECT r FROM Reserva r WHERE r.idCliente = :idCliente AND r.idPassagem.horario > :horaAtual ORDER BY r.idPassagem.horario");
         query.setParameter("idCliente", cliente);
+        query.setParameter("horaAtual", new Timestamp(System.currentTimeMillis()));
         return query.getResultList();
     }
 

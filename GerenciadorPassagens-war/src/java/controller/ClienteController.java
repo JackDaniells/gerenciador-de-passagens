@@ -11,6 +11,8 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import model.ClientesFacade;
 
 
@@ -27,7 +29,23 @@ public class ClienteController implements Serializable {
     private ClientesFacade clienteFacade;
     private Clientes cliente = new Clientes();
     
-    private String login, senha;
+    private String login, senha, senhaNova, senhaNovaVerify;
+
+    public String getSenhaNova() {
+        return senhaNova;
+    }
+
+    public void setSenhaNova(String senhaNova) {
+        this.senhaNova = senhaNova;
+    }
+
+    public String getSenhaNovaVerify() {
+        return senhaNovaVerify;
+    }
+
+    public void setSenhaNovaVerify(String senhaNovaVerify) {
+        this.senhaNovaVerify = senhaNovaVerify;
+    }
 
     
     public String getLogin() {
@@ -76,28 +94,45 @@ public class ClienteController implements Serializable {
     }
            
     public String update(Clientes cliente){
-        this.cliente = cliente;
-        return "update";
+        Clientes cli = this.clienteFacade.editar(cliente);
+        if(cli == null){
+            return null;
+        }else{
+            return "listaPassagens";
+        }
     }
-    
-    public String update(){
-        this.clienteFacade.edit(cliente);
-        return "listaCliente";
-    }     
-    
+        
     public String entrar(){
        
         Clientes cliente = clienteFacade.autenticar(getLogin(), getSenha());
-        Session.getInstance();
-        Session.setUsuario(cliente);
-      return "listaPassagens";
+        if(cliente != null){
+            Session.getInstance();
+            Session.setUsuario(cliente);
+            return "listaPassagens";
+        } else{
+            return null;
+        } 
+        
     }
     
     public String sair(){
        cliente = new Clientes();
        Session.getInstance();
        Session.setUsuario(cliente);
+       login = "";
+       senha = "";
        return "index";
+    }
+    
+    public String editarSenha(){
+        Session.getInstance();
+        Clientes cliAtual = Session.getUsuario();
+        if(senhaNova.equals(senhaNovaVerify) && senha.equals(cliAtual.getSenha())){
+            cliAtual.setSenha(senhaNova);
+            this.clienteFacade.edit(cliAtual);
+            return "listaPassagens";
+        }
+        return null;
     }
     
     

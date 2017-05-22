@@ -5,11 +5,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Editar Conta</title>
+        <title>Cadastro Cliente</title>
     </h:head>
     <h:body>
         <f:view>
-            <h:form style="width:100%;">
+            <div align="center">
+                 <h:form style="width:100%;">
                 <p:menubar>
                         <p:menuitem value="Listar Passagens" outcome="listaPassagens"></p:menuitem>
                         <p:menuitem value="Listar Reservas" outcome="listaReservas"></p:menuitem>
@@ -17,26 +18,23 @@
                         <p:menuitem value="Editar Senha" outcome="updateSenhaCliente"></p:menuitem>
                         <p:menuitem style="position: absolute; right: 6px;" value="Sair" action="#{clienteController.sair()}" ></p:menuitem>
                 </p:menubar>
-            </h:form>
-
-            <div align="center" >
+                </h:form>
                 <h:form>
-                        <h1><h:outputText value="Editar Conta"/></h1>
+                        <h1><h:outputText value="Editar Senha"/></h1>
                         <p:panelGrid columns="2">
-                            <p:outputLabel value="Nome:" for="nome" />
-                            <h:inputText id="nome" value="#{clienteController.cliente.nome}" title="Nome" required="true" requiredMessage="The Nome field is required."/>
-                            <p:outputLabel value="Email:" for="email" />
-                            <h:inputText id="email" value="#{clienteController.cliente.email}" title="Email" />
-                            <p:outputLabel value="Login:" for="login" />
-                            <h:inputText id="login" value="#{clienteController.cliente.login}" title="Login" required="true" />
-                            <p:outputLabel value="Senha Atual:" for="senha" />
-                            <h:inputSecret id="senha" value="#{clienteController.cliente.senha}" title="Senha"  required="true"/>
-                            <h:commandButton value="Editar" action="#{clienteController.update(clienteController.cliente)}" > </h:commandButton>
+                            <p:outputLabel value="Senha Atual:" for="senha"/>
+                            <h:inputSecret id="senha" value="#{clienteController.senha}" title="Senha" required="true" />
+                             <p:outputLabel value="Nova Senha:" for="senhaNova"/>
+                            <h:inputSecret id="senhaNova" value="#{clienteController.senhaNova}" title="Senha" required="true" />
+                             <p:outputLabel value="Redigite a nova Senha:" for="senhaNovaVerify"/>
+                            <h:inputSecret id="senhaNovaVerify" value="#{clienteController.senhaNovaVerify}" title="Senha" required="true" />
+                            <h:commandButton value="Editar" action="#{clienteController.editarSenha()}"> </h:commandButton>
                             <h:link value="Voltar" outcome="listaPassagens"></h:link>
-                    </p:panelGrid>
+                        </p:panelGrid>
+
+                        
                 </h:form>
             </div>
-            
         </f:view>
 
     </h:body>
